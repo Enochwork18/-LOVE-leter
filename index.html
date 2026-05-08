@@ -56,43 +56,49 @@
 </div>
 
 <!-- ========= SCREEN 3: LOVE LETTER ========= -->
+<!--
+  FIX: Removed bare <br> tag between letter-paper and button (invalid flex child).
+  Added padding-bottom so button isn't clipped at bottom of scroll.
+  The screen uses flex-direction:column so children stack naturally —
+  letter-paper then the button, both visible when scrolling.
+-->
 <div class="screen" id="screen-letter">
   <div class="letter-paper">
     <div class="letter-decoration-top">❦ ✦ ❦</div>
-    <p class="letter-date">8th of May, 2026  Written from the heart of Tummy 🌚</p>
-    
+    <p class="letter-date">8th of May, 2026 · Written from the heart of Tummy 🌚</p>
+
     <p class="letter-greeting">My dearest Yvette Dumoteim Tonye,</p>
-    
+
     <div class="letter-body">
       <p>
-        I don't know how to begin this without sounding like I rehearsed it, so I won't pretend. 
-        This letter has been living in my chest for a while now, pressing softly against my ribs every time you reply to me, 
-        every time you say "<em>my love</em>" like it's the easiest thing in the world. 
+        I don't know how to begin this without sounding like I rehearsed it, so I won't pretend.
+        This letter has been living in my chest for a while now, pressing softly against my ribs every time you reply to me,
+        every time you say "<em>my love</em>" like it's the easiest thing in the world.
       </p>
-      
+
       <div class="divider">· · · ·</div>
 
       <p>
-        It started on Snapchat  <em>@sayyvette</em>  before I even knew how deep this would go. 
-        You were just someone interesting. Then you became someone I couldn't stop thinking about. 
-        Then, somewhere between your voice notes, your 5am study nights, 
-        your yam and pepper soup, your glasses, your pout, and that one photo in the black tee 
-        where you smiled like you had a whole secret 
+        It started on Snapchat <em>@sayyvette</em> before I even knew how deep this would go.
+        You were just someone interesting. Then you became someone I couldn't stop thinking about.
+        Then, somewhere between your voice notes, your 5am study nights,
+        your yam and pepper soup, your glasses, your pout, and that one photo in the black tee
+        where you smiled like you had a whole secret
         <em>I was entirely gone.</em>
       </p>
 
       <p>
-        I know you said you'd spike my mental and emotional stability. Maybe you were right. 
+        I know you said you'd spike my mental and emotional stability. Maybe you were right.
         But Yvette, I would rather be <em>beautifully destabilised by you</em> than perfectly calm without you.
         Because what you make me feel isn't anxiety  it's <em>aliveness.</em>
       </p>
 
       <p>
         I know we live in different states. I know I'm still figuring out my path
-        software engineering, mechatronics, this new job. 
-        I know you like romance that you can touch and see and feel. I hear you. 
-        Flowers are coming. The letters are coming (starting with this one). 
-        The dates are coming when my savings make it possible for me to knock on your door 
+        software engineering, mechatronics, this new job.
+        I know you like romance that you can touch and see and feel. I hear you.
+        Flowers are coming. The letters are coming (starting with this one).
+        The dates are coming when my savings make it possible for me to knock on your door
         and take you somewhere that deserves you.
       </p>
 
@@ -100,24 +106,24 @@
 
       <p>
         But for now right now 
-        on this rainy morning where I went to work wet and cold and still couldn't stop smiling 
-        because you exist somewhere on the other side of a phone screen, 
+        on this rainy morning where I went to work wet and cold and still couldn't stop smiling
+        because you exist somewhere on the other side of a phone screen,
         reading this: <em>I want you to be mine.</em>
       </p>
 
       <p>
-        Not a "we'll see." Not a "maybe." 
-        You  with your writing, your mind games, your stubbornness about my name 
-        (yes, you'll always call me Tunmise, I've accepted it), 
-        your "I don't snap my food" attitude, your fierceness, your softness
+        Not a "we'll see." Not a "maybe."
+        You with your writing, your mind games, your stubbornness about my name
+        (yes, you'll always call me Tunmise, I've accepted it),
+        your "I don't snap my food" attitude, your fierceness, your softness 
         all of you. <em>Officially mine.</em>
       </p>
 
       <p>
-        I promise you honesty. I promise you effort. 
-        I promise you a partner who shows up even across the distance. 
-        I promise to learn what makes you feel safe. 
-        And I promise that even when I don't have the right words, 
+        I promise you honesty. I promise you effort.
+        I promise you a partner who shows up even across the distance.
+        I promise to learn what makes you feel safe.
+        And I promise that even when I don't have the right words,
         I will always, always show up for you.
       </p>
     </div>
@@ -129,8 +135,9 @@
       <span>Bismark Enoch Oluwatunmise 🌸</span>
     </div>
   </div>
-  <br>
-  <button class="continue-btn" onclick="showQuestion()" style="margin-top: 1rem;">
+
+  <!-- Button is a direct flex child of the screen, same as in gallery screen -->
+  <button class="continue-btn letter-continue-btn" onclick="showQuestion()">
     Now... I have one question for you 💗
   </button>
 </div>
@@ -156,7 +163,7 @@
 <div class="screen" id="screen-no">
   <div class="no-emoji">😭</div>
   <p class="no-title">You pressed No?<br><em>Yvette, be serious.</em></p>
-  
+
   <div class="no-reasons">
     <p>
       The court has reviewed your decision and found it <strong>invalid</strong> on the following grounds:
@@ -192,12 +199,12 @@
   </div>
   <div class="yes-names">Bismark + Yvette · Est. May 2026</div>
   <div style="font-family:'Cormorant Garamond',serif; color: var(--blush); font-style:italic; font-size:1.1rem; max-width:450px; text-align:center; margin-top:1rem; line-height:1.9;">
-    "Slow honesty. Trust. And seeing if we naturally grow into more..." 
+    "Slow honesty. Trust. And seeing if we naturally grow into more..."
     <br>— We're growing. 🌸
   </div>
   <div style="margin-top:2rem; font-family:'Dancing Script',cursive; color: var(--gold); font-size:1rem; text-align:center; opacity:0.7;">
     📧 A longer letter is on its way to yvettetonye58@gmail.com 💌
-</div>
+  </div>
 </div>
 
 <script src="script.js"></script>

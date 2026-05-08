@@ -1,60 +1,40 @@
 // ================= STARS =================
 
-function initStars(){
-
+function initStars() {
   const starsEl = document.getElementById('stars');
-
-  if(!starsEl) return;
-
-  for(let i = 0; i < 120; i++){
-
+  if (!starsEl) return;
+  for (let i = 0; i < 120; i++) {
     const s = document.createElement('div');
-
     s.className = 'star';
-
     const size = Math.random() * 2.5 + 0.5;
-
     s.style.cssText = `
-      left:${Math.random() * 100}%;
-      top:${Math.random() * 100}%;
-
-      width:${size}px;
-      height:${size}px;
-
-      animation-duration:${Math.random() * 3 + 1.5}s;
-      animation-delay:${Math.random() * 3}s;
+      left: ${Math.random() * 100}%;
+      top: ${Math.random() * 100}%;
+      width: ${size}px;
+      height: ${size}px;
+      animation-duration: ${Math.random() * 3 + 1.5}s;
+      animation-delay: ${Math.random() * 3}s;
     `;
-
     starsEl.appendChild(s);
   }
 }
 
 // ================= PETALS =================
 
-function initPetals(){
-
+function initPetals() {
   const petalsEl = document.getElementById('petals');
-
-  if(!petalsEl) return;
-
-  for(let i = 0; i < 18; i++){
-
+  if (!petalsEl) return;
+  for (let i = 0; i < 18; i++) {
     const p = document.createElement('div');
-
     p.className = 'petal';
-
     p.style.cssText = `
-      left:${Math.random() * 100}%;
-
-      animation-duration:${Math.random() * 6 + 5}s;
-      animation-delay:${Math.random() * 8}s;
-
-      transform:rotate(${Math.random() * 360}deg);
-
-      width:${Math.random() * 8 + 8}px;
-      height:${Math.random() * 12 + 10}px;
+      left: ${Math.random() * 100}%;
+      animation-duration: ${Math.random() * 6 + 5}s;
+      animation-delay: ${Math.random() * 8}s;
+      transform: rotate(${Math.random() * 360}deg);
+      width: ${Math.random() * 8 + 8}px;
+      height: ${Math.random() * 12 + 10}px;
     `;
-
     petalsEl.appendChild(p);
   }
 }
@@ -62,206 +42,122 @@ function initPetals(){
 // ================= PHOTOS =================
 
 const photos = [
-
-  {
-    src:'Snapchat-695293383.jpg',
-    caption:'The pout that started everything 😏'
-  },
-
-  {
-    src:'Snapchat-1299161064.jpg',
-    caption:'Glasses & the peace sign 🤍'
-  },
-
-  {
-    src:'Snapchat-363811885.jpg',
-    caption:'Moody & magnetic 🌚'
-  },
-
-  {
-    src:'Snapchat-1346830605.jpg',
-    caption:'She wears a tie and wins 🖤'
-  },
-
-  {
-    src:'Snapchat-791287002.jpg',
-    caption:'The one that silenced me 🌸'
-  },
-
-  {
-    src:'Snapchat-945642693.jpg',
-    caption:'That smile... yeah I’m done 💗'
-  },
-
-  {
-    src:'WhatsApp Image 2026-05-08 at 12.21.38 PM.jpeg',
-    caption:'Even looking away she stuns 🌹'
-  }
-
+  { src: 'Snapchat-695293383.jpg',                              caption: 'The pout that started everything 😏' },
+  { src: 'Snapchat-1299161064.jpg',                             caption: 'Glasses & the peace sign 🤍' },
+  { src: 'Snapchat-363811885.jpg',                              caption: 'Moody & magnetic 🌚' },
+  { src: 'Snapchat-1346830605.jpg',                             caption: 'She wears a tie and wins 🖤' },
+  { src: 'Snapchat-791287002.jpg',                              caption: 'The one that silenced me 🌸' },
+  { src: 'Snapchat-945642693.jpg',                              caption: 'That smile... yeah I\'m done 💗' },
+  { src: 'WhatsApp Image 2026-05-08 at 12.21.38 PM.jpeg',       caption: 'Even looking away she stuns 🌹' }
 ];
 
 // ================= PLACEHOLDER =================
 
-function getPlaceholderImage(){
-
+function getPlaceholderImage() {
   const canvas = document.createElement('canvas');
-
   canvas.width = 240;
   canvas.height = 240;
-
   const ctx = canvas.getContext('2d');
-
-  const gradient = ctx.createLinearGradient(
-    0,
-    0,
-    240,
-    240
-  );
-
+  const gradient = ctx.createLinearGradient(0, 0, 240, 240);
   gradient.addColorStop(0, '#c8445a');
   gradient.addColorStop(1, '#f7c5d0');
-
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, 240, 240);
-
   ctx.fillStyle = '#ffffff';
-
   ctx.font = 'bold 60px Arial';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-
   ctx.fillText('💗', 120, 120);
-
   return canvas.toDataURL();
 }
 
 // ================= IMAGE URL =================
 
-function getImageUrl(path){
-
-  if(!path){
-    return getPlaceholderImage();
-  }
-
+function getImageUrl(path) {
+  if (!path) return getPlaceholderImage();
   return path;
 }
 
 // ================= SCREEN =================
-
-function showScreen(id){
-
-  document
-    .querySelectorAll('.screen')
-    .forEach(screen => {
-      screen.style.display = 'none';
-    });
-
+/*
+  FIX: All screens have display:none in CSS by default.
+  showScreen() always sets display:flex — this must match what each
+  screen needs (all screens use flex layout). No screen-specific
+  display:none overrides exist in the CSS anymore.
+*/
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(screen => {
+    screen.style.display = 'none';
+  });
   const el = document.getElementById(id);
-
-  if(el){
-
+  if (el) {
     el.style.display = 'flex';
-
-    window.scrollTo({
-      top:0,
-      behavior:'smooth'
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
 
 // ================= ENVELOPE =================
 
-function openEnvelope(){
-
+function openEnvelope() {
   const env = document.getElementById('envelope');
-
   env.classList.add('open');
 
-  document
-    .getElementById('musicPlayer')
-    .classList.remove('hidden');
-
+  document.getElementById('musicPlayer').classList.remove('hidden');
   musicOn = true;
-
   playMusic();
 
   const toggle = document.getElementById('musicToggle');
-
-  if(toggle){
-    toggle.textContent = '⏸';
-  }
+  if (toggle) toggle.textContent = '⏸';
 
   setTimeout(() => {
-
     buildGallery();
-
     showScreen('screen-gallery');
-
   }, 800);
 }
 
 // ================= BUILD GALLERY =================
 
-function buildGallery(){
-
+function buildGallery() {
   const grid = document.getElementById('photoGrid');
-
   grid.innerHTML = '';
-
   photos.forEach((ph, i) => {
-
     const card = document.createElement('div');
-
     card.className = 'photo-card';
-
     card.style.animationDelay = `${i * 0.1}s`;
 
     const img = document.createElement('img');
-
     img.src = getImageUrl(ph.src);
-
     img.alt = ph.caption;
-
     img.loading = 'lazy';
-
-    img.onerror = () => {
-      img.src = getPlaceholderImage();
-    };
+    img.onerror = () => { img.src = getPlaceholderImage(); };
 
     const overlay = document.createElement('div');
-
     overlay.className = 'photo-overlay';
-
     overlay.textContent = ph.caption;
 
     card.appendChild(img);
     card.appendChild(overlay);
-
     grid.appendChild(card);
   });
 }
 
 // ================= TRANSITIONS =================
 
-function showLetter(){
+function showLetter() {
   showScreen('screen-letter');
 }
 
-function showQuestion(){
-
+function showQuestion() {
   showScreen('screen-question');
-
   resetNoButton();
 }
 
-function showYes(){
-
+function showYes() {
   showScreen('screen-yes');
-
   launchConfetti();
 }
 
-function showNo(){
+function showNo() {
   showScreen('screen-no');
 }
 
@@ -269,85 +165,65 @@ function showNo(){
 
 let noMoves = 0;
 
-function resetNoButton(){
-
+function resetNoButton() {
   noMoves = 0;
-
   const noBtn = document.getElementById('noBtn');
-
-  if(noBtn){
-
-    noBtn.style.transform = 'translate(0,0)';
+  if (noBtn) {
+    /*
+      FIX: Clear the inline transform entirely on reset so CSS base state
+      takes over. Setting to '' removes the inline style, restoring position.
+    */
+    noBtn.style.transform = '';
     noBtn.style.opacity = '1';
     noBtn.style.pointerEvents = 'auto';
-    noBtn.style.transition = 'none';
+    noBtn.style.transition = '';
   }
 }
 
-function runAwayNo(btn){
-
-  if(noMoves >= 5) return;
-
+function runAwayNo(btn) {
+  if (noMoves >= 5) return;
   noMoves++;
 
   const max = 120;
-
   const x = (Math.random() - 0.5) * max * 2;
   const y = (Math.random() - 0.5) * max * 2;
 
+  /*
+    FIX: We set transition on the element directly (not via CSS :hover)
+    so the JS-driven transform animates smoothly without competing with
+    any CSS hover transform rule (which we removed from the stylesheet).
+  */
+  btn.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
   btn.style.transform = `translate(${x}px, ${y}px)`;
 
-  btn.style.transition = 'transform .3s ease';
-
-  if(noMoves >= 5){
-
-    btn.style.opacity = '.1';
+  if (noMoves >= 5) {
+    btn.style.opacity = '0.1';
     btn.style.pointerEvents = 'none';
   }
 }
 
 // ================= CONFETTI =================
 
-function launchConfetti(){
-
+function launchConfetti() {
   const container = document.getElementById('confetti');
-
-  if(!container) return;
-
+  if (!container) return;
   container.innerHTML = '';
 
-  const colors = [
-    '#c8445a',
-    '#f7c5d0',
-    '#d4a853',
-    '#ffffff',
-    '#8b1a2e',
-    '#f9dde5'
-  ];
+  const colors = ['#c8445a', '#f7c5d0', '#d4a853', '#ffffff', '#8b1a2e', '#f9dde5'];
 
-  for(let i = 0; i < 80; i++){
-
+  for (let i = 0; i < 80; i++) {
     const piece = document.createElement('div');
-
     piece.className = 'confetti-piece';
-
     piece.style.cssText = `
-      left:${Math.random() * 100}%;
-
-      background:
-      ${colors[Math.floor(Math.random() * colors.length)]};
-
-      animation-duration:${Math.random() * 3 + 2}s;
-      animation-delay:${Math.random() * 2}s;
-
-      transform:rotate(${Math.random() * 360}deg);
-
-      width:${Math.random() * 8 + 6}px;
-      height:${Math.random() * 14 + 8}px;
-
-      border-radius:${Math.random() > 0.5 ? '50%' : '2px'};
+      left: ${Math.random() * 100}%;
+      background: ${colors[Math.floor(Math.random() * colors.length)]};
+      animation-duration: ${Math.random() * 3 + 2}s;
+      animation-delay: ${Math.random() * 2}s;
+      transform: rotate(${Math.random() * 360}deg);
+      width: ${Math.random() * 8 + 6}px;
+      height: ${Math.random() * 14 + 8}px;
+      border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
     `;
-
     container.appendChild(piece);
   }
 }
@@ -356,89 +232,48 @@ function launchConfetti(){
 
 let musicOn = false;
 
-function toggleMusic(){
-
+function toggleMusic() {
   musicOn = !musicOn;
-
   const toggle = document.getElementById('musicToggle');
-
-  if(toggle){
-
-    toggle.textContent = musicOn
-      ? '⏸'
-      : '▶';
-  }
-
-  if(musicOn){
-
+  if (toggle) toggle.textContent = musicOn ? '⏸' : '▶';
+  if (musicOn) {
     playMusic();
-
-  }else{
-
+  } else {
     stopMusic();
   }
 }
 
-function playMusic(){
-
+function playMusic() {
   const audio = document.getElementById('bgMusic');
-
-  if(audio){
-
-    audio.src =
-      'Sleep Token - Caramel-yt.savetube.me 2.mp3';
-
+  if (audio) {
+    audio.src = 'Sleep Token - Caramel-yt.savetube.me 2.mp3';
     audio.volume = 0.3;
-
-    audio.play()
-      .catch(err =>
-        console.log('Audio error:', err)
-      );
+    audio.play().catch(err => console.log('Audio error:', err));
   }
 }
 
-function stopMusic(){
-
+function stopMusic() {
   const audio = document.getElementById('bgMusic');
-
-  if(audio){
-
+  if (audio) {
     audio.pause();
-
     audio.currentTime = 0;
   }
 }
 
 // ================= INIT =================
 
-document.addEventListener(
-  'DOMContentLoaded',
-  function(){
+document.addEventListener('DOMContentLoaded', function () {
+  initStars();
+  initPetals();
+  showScreen('screen-envelope');
+});
 
-    initStars();
+// ================= SPACEBAR SHORTCUT =================
 
-    initPetals();
-
-    showScreen('screen-envelope');
+document.addEventListener('keydown', function (e) {
+  const envelopeScreen = document.getElementById('screen-envelope');
+  if (e.code === 'Space' && envelopeScreen && envelopeScreen.style.display !== 'none') {
+    e.preventDefault();
+    openEnvelope();
   }
-);
-
-// ================= SHORTCUT =================
-
-document.addEventListener(
-  'keydown',
-  function(e){
-
-    if(
-      e.code === 'Space' &&
-      document
-        .getElementById('screen-envelope')
-        .style.display !== 'none'
-    ){
-
-      e.preventDefault();
-
-      openEnvelope();
-    }
-  }
-);
+});
