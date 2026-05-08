@@ -97,6 +97,12 @@ function openEnvelope() {
   env.classList.add('open');
   document.getElementById('musicPlayer').classList.remove('hidden');
   
+  // Auto-play music when envelope opens
+  musicOn = true;
+  playMusic();
+  const toggle = document.getElementById('musicToggle');
+  if (toggle) toggle.textContent = '⏸';
+  
   setTimeout(() => {
     buildGallery();
     showScreen('screen-gallery');
