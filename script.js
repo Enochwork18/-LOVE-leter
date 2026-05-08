@@ -47,7 +47,7 @@ const photos = [
   { src: 'Snapchat-1346830605.jpg', caption: 'She wears a tie and wins 🖤' },
   { src: 'Snapchat-791287002.jpg', caption: 'The one that silenced me 🌸' },
   { src: 'Snapchat-945642693.jpg', caption: 'That smile... yeah, I\'m done 💗' },
-  { src: 'WhatsApp Image 2026-05-08 at 12.21.38 PM.jpg', caption: 'Even looking away she stuns 🌹' },
+  { src: 'WhatsApp Image 2026-05-08 at 12.21.38 PM.jpeg', caption: 'Even looking away she stuns 🌹' },
 ];
 
 // ===== PLACEHOLDER IMAGE (gradient placeholder) =====
